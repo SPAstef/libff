@@ -338,9 +338,14 @@ namespace libff
                 // opt_result = opt_result + (a.r * g[a.idx]);
                 opt_result = opt_result + opt_window_wnaf_exp(g[a.idx], a.r, abits);
 #ifdef DEBUG
-                printf("Skipping the following pair (%zu bit number vs %zu bit):\n", abits, bbits);
-                a.r.print();
-                b.r.print();
+
+                if (!libff::inhibit_profiling_info)
+                {
+                    printf("Skipping the following pair (%zu bit number vs %zu bit):\n", abits,
+                           bbits);
+                    a.r.print();
+                    b.r.print();
+                }
 #endif
                 a.r.clear();
             }
